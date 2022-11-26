@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace VowelAndConsonantsVerification
 {
@@ -6,36 +7,28 @@ namespace VowelAndConsonantsVerification
     {
         static void Main(string[] args)
         {
-
-            int vowels = 0, consonant = 0;
+            int vowels = 0, consonants = 0;
+            string name;
 
             Console.Write("Enter your full name: ");
-            string name = Console.ReadLine();
+            name = Console.ReadLine();
 
             name = name.ToLower();
             name = name.Replace(" ", "");
 
-            for (int i = 0; i < name.Length; i++)
-            {
+            vowels = name.Count(
+                letter => letter == 'a' || 
+                letter == 'e' || 
+                letter == 'i' || 
+                letter == 'o' || 
+                letter == 'u'
+            );
 
-                if ((name[i] == 'a') || (name[i] == 'e') || (name[i] == 'i') || (name[i] == 'o') || (name[i] == 'u'))
-                {
+            consonants = name.Length - vowels;
 
-                    vowels++;
+            Console.WriteLine("\nYour name has {0} vowels and {1} consonants", vowels, consonants);
 
-                }
-                else
-                {
-
-                    consonant++;
-
-                }
-            }
-
-            Console.WriteLine("\nYour name has {0} vowels and {1} consonants", vowels, consonant);
-
-            Console.ReadLine();
-
+            Console.ReadKey();
         }
     }
 }
